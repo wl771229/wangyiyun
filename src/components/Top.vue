@@ -1,6 +1,13 @@
 
 <template>
   <div>
+    <svg >
+
+      <circle class="progress__circle" cx="23" cy="23" r="18" stroke="#ccc"
+                    :stroke-dasharray="num" fill="white"/>
+
+    </svg>
+
     <!--排行榜-->
     <div class="topList" v-for="(item,index) in topList" :key="item.id" @click="songDetail(index)">
       <span>{{index+1}}</span>
@@ -9,6 +16,7 @@
         <p>{{item.ar[0].name}}</p>
       </div>
     </div>
+
   </div>
 </template>
 
@@ -18,7 +26,8 @@
 
     data(){
       return{
-        topList:''
+        topList:'',
+        num:'2 113'
       }
     },
     methods: {
@@ -60,6 +69,18 @@
   }
 </script>
 <style lang="scss" scoped="">
+  .progress{
+    /*position: relative;*/
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 46px;*/
+    /*height: 46px;*/
+  }
+  .progress__circle {
+    fill: none;
+    stroke: #31c27c;
+    stroke-width: 2;
+  }
   .topList{
     display: flex;
     align-items: center;

@@ -44,6 +44,7 @@ const mutations = {
   },
   // 当前的播放状态
   newStatus(state,value){
+
     if(value === 'stop'){
       state.playStatus = false
     }else {
@@ -65,9 +66,9 @@ const actions = {
     context.commit('newSong',value)
   },
   // 当前的播放列表
-  PlayStatus(context) {
+  PlayStatus(context,value) {
 
-    context.commit('newStatus')
+    context.commit('newStatus',value)
   }
 };
 
