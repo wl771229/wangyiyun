@@ -70,6 +70,7 @@
         },
         // 暂停音频
         pause (stop) {
+//            123
           this.PlayStatus(stop);
           this.$refs.audio.pause()
           return
