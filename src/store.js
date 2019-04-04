@@ -13,6 +13,7 @@ const state = {
   index:'',  //当前的索引
   playStatus:'',  // 当前的播放状态
   songList:'',  // 当前的播放列表
+  time:'', // 当前的播放时间
 
 };
 const getters = {

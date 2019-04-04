@@ -10,10 +10,24 @@
       </div>
       <div class="play-btn" v-if="Status">
 
+        <svg class="progress">
+
+          <circle class="progress__circle" cx="20" cy="20" r="20" stroke="#ccc"
+                  :stroke-dasharray="num" fill="white"/>
+
+        </svg>
+
         <img class="bofang"  @click="pause('stop')" src="../../static/img/b.png" alt="">
 
       </div>
       <div class="play-btn"  v-else>
+
+        <svg class="progress">
+
+          <circle class="progress__circle" cx="20" cy="20" r="19.5" stroke="#ccc"
+                  :stroke-dasharray="num" fill="white"/>
+
+        </svg>
         <img class="bofang"  @click="play" src="../../static/img/z.png" alt="">
 
       </div>
@@ -33,7 +47,8 @@
             return{
               url:'',
               newSong:'',
-              player:''
+              player:false,
+              num:'23 122'
             }
         },
       computed: {
@@ -71,6 +86,7 @@
         // 暂停音频
         pause (stop) {
 //            123
+
           this.PlayStatus(stop);
           this.$refs.audio.pause()
           return
@@ -117,6 +133,26 @@
     }
 </script>
 <style scoped>
+
+  .progress{
+  position: relative;
+  top: 10px;
+  left: 13px;
+  width: 40px;
+  height: 40px;
+  border: 1px #ccc solid;
+  border-radius: 50%;
+
+  }
+  .progress__circle {
+  fill: none;
+  stroke: red;
+  stroke-width: 2;
+    z-index: 99;
+
+  }
+
+
   .play{
     display: flex;
     height: 55px;

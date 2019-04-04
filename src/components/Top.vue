@@ -1,13 +1,10 @@
 
 <template>
   <div>
-    <svg >
 
-      <circle class="progress__circle" cx="23" cy="23" r="18" stroke="#ccc"
-                    :stroke-dasharray="num" fill="white"/>
 
-    </svg>
 
+      <!--<div @click="jia" style="color: red">加</div>-->
     <!--排行榜-->
     <div class="topList" v-for="(item,index) in topList" :key="item.id" @click="songDetail(index)">
       <span>{{index+1}}</span>
@@ -27,7 +24,7 @@
     data(){
       return{
         topList:'',
-        num:'2 113'
+
       }
     },
     methods: {
@@ -45,7 +42,7 @@
         },
 //      详情
       songDetail(index){
-          this.Index(index)
+          this.Index(index);
           this.SongList(this.topList)
 
 //        this.$axios.get(`/song/url?id=${id}`,
@@ -58,6 +55,18 @@
 //
 //        })
       },
+
+//      jia(){
+////          1、获取一个基准值，2、获取当前的播放时间 3、基准值除以播放时间，得到没秒走的时间
+//
+//
+//        let num = this.num;
+//        let numArr = num.split(' ');
+//        let number = Number(numArr[0]);
+//        number++;
+//
+//        this.num = number+' '+ '122'
+//      }
     },
     mounted(){
       this.list()
@@ -69,18 +78,7 @@
   }
 </script>
 <style lang="scss" scoped="">
-  .progress{
-    /*position: relative;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*width: 46px;*/
-    /*height: 46px;*/
-  }
-  .progress__circle {
-    fill: none;
-    stroke: #31c27c;
-    stroke-width: 2;
-  }
+
   .topList{
     display: flex;
     align-items: center;
