@@ -5,7 +5,7 @@
         <img :src="newSong.al.picUrl" alt="">
       </div>
       <div class="singer-name ">
-        <div>{{newSong.al.name}}</div>
+        <div class="singer-name-gname">{{newSong.name}}</div>
         <div>{{newSong.ar[0].name}}</div>
       </div>
       <div class="play-btn" v-if="Status">
@@ -32,7 +32,7 @@
 
       </div>
 
-      <audio :src="url"  ref="audio"  @pause="onPause"  @play="onPlay">
+      <audio :src="url"   ref="audio"  @pause="onPause"  @play="onPlay">
       </audio>
 
 
@@ -48,8 +48,11 @@
               url:'',
               newSong:'',
               player:false,
-              num:'23 122'
-            }
+              num:'0 125',
+              timer:null,
+              minNums:0
+
+        }
         },
       computed: {
         ...mapGetters(['songList','index','Status']),
@@ -64,42 +67,52 @@
             }
           ).then((res) => {
             this.url = res.data.data[0].url;
-            this.player = true
+            this.player = true;
 //            获取到url地址之后 说明要播放，所以这里要改变播放的状态
               this.PlayStatus().then(() =>{
-
                 this.play()
-
-
               })
-
           })
+        },
 
+//        进度条函数
+        progress(dt){
+          let minNum  = 125/dt ;
+          let minNums = this.minNums;
+          this.timer = setInterval(() =>{
+            minNums+=minNum;
+//            判断 minNums >= dt,那么为0 125呀，再次运行，那么
+            if(minNums >= dt){
+              clearInterval(this.timer);
+              this.minNums = 0;
+              this.num = 0+ ' '+ '125';
+
+            }else {
+              this.minNums = minNums;
+              this.num = minNums+ ' '+ '125';
+            }
+          },1000)
         },
 
         // 播放音频
         play (stop) {
           this.PlayStatus();
           this.$refs.audio.play()
-
         },
         // 暂停音频
         pause (stop) {
-//            123
-
+          clearInterval(this.timer);
           this.PlayStatus(stop);
-          this.$refs.audio.pause()
+          this.$refs.audio.pause();
           return
         },
-        // 当音频播放
+        // 当音频正在播放
         onPlay () {
-          console.log("正在播放")
+          this.progress(this.newSong.dt/1000)
         },
-        // 当音频暂停
+        // 当音频正在暂停
         onPause () {
-//            怎么判断当前是播放完毕还是点击了暂停
-
-          console.log("正在暂停")
+//       怎么判断当前是播放完毕还是点击了暂停
           if(this.Status){
             let index = this.index + 1;
             let id = this.songList[index].id;
@@ -114,14 +127,10 @@
           let id = this.songList[newVal].id;
           this.newSong = this.songList[newVal];
 
-          console.log( this.newSong);
-
 
           this.songUrl(id)
 
         },
-
-
 
       },
       mounted(){

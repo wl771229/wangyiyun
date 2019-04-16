@@ -9,7 +9,7 @@
     <div class="topList" v-for="(item,index) in topList" :key="item.id" @click="songDetail(index)">
       <span>{{index+1}}</span>
       <div class="topList_name">
-        <p>{{item.name}}</p>
+        <p class="topList_gname">{{item.name}}</p>
         <p>{{item.ar[0].name}}</p>
       </div>
     </div>
@@ -90,6 +90,14 @@
   .topList_name{
     line-height: 25px;
     margin-left: 20px;
+  }
+  .topList_gname{
+    height: 20px ;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
   }
 
 
