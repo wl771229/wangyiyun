@@ -24,7 +24,7 @@
 
         <svg class="progress">
 
-          <circle class="progress__circle" cx="20" cy="20" r="19.5" stroke="#ccc"
+          <circle class="progress__circle" cx="20" cy="20" r="20" stroke="#ccc"
                   :stroke-dasharray="num" fill="white"/>
 
         </svg>
@@ -82,12 +82,12 @@
           this.timer = setInterval(() =>{
             minNums+=minNum;
 //            判断 minNums >= dt,那么为0 125呀，再次运行，那么
-            if(minNums >= dt){
+            if(minNums >= 125){
               clearInterval(this.timer);
               this.minNums = 0;
-              this.num = 0+ ' '+ '125';
-
+              this.num = '0 125';
             }else {
+
               this.minNums = minNums;
               this.num = minNums+ ' '+ '125';
             }
@@ -126,12 +126,8 @@
 //            获取当前的播放的id
           let id = this.songList[newVal].id;
           this.newSong = this.songList[newVal];
-
-
           this.songUrl(id)
-
         },
-
       },
       mounted(){
 
