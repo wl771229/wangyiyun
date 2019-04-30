@@ -13,6 +13,7 @@
         <div class="box-sun"></div>
       </div>
 
+      <tablist></tablist>
       <top></top>
       <play></play>
 
@@ -23,11 +24,13 @@
 
   import top from  "./Top.vue"
   import play from  "./Play.vue"
+  import tablist from  "./list/TabList.vue"
 
     export default {
       components:{
         top,
-        play
+        play,
+        tablist
       },
         data(){
             return{
