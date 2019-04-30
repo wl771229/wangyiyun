@@ -17,15 +17,32 @@ export default {
   },
   methods:{
         login(){
-          this.$axios.get(`/login/cellphone?phone=${this.phone}&password=${this.password}`,
-            {
-              xhrFields: { withCredentials: true }
-            }
-          ).then((res) => {
 
+            return new Promise((reslove,reject) =>{
+              this.$axios.get(`/login/cellphone?phone=${this.phone}&password=${this.password}`,
+                {
+                  xhrFields: { withCredentials: true }
+                }
+              ).then((res) => {
+                this.status()
+
+              })
             })
 
+
+        },
+    status(){
+      this.$axios.get(`/login/status`,
+        {
+          xhrFields: { withCredentials: true }
         }
+      ).then((res) => {
+
+      })
+    }
+  },
+  mounted(){
+
   }
 }
 </script>
