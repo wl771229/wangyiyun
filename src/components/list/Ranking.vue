@@ -7,7 +7,6 @@
             </div>
             <div class="ranking_list_data">
                 <p v-for="(tracks,index) in item.tracks">{{index+1}}.{{tracks.first}}<span class="geng" :key="index" >-</span>{{tracks.second}}</p>
-
             </div>
           </div>
     </div>
@@ -85,14 +84,6 @@
   }
   .geng{
     margin: 0 6px;
-  }
-  img[lazy=loading] {
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    /*background-image: url("../../assets/img/gq.png") no-repeat center center;*/
-    background-color: #ccc;
-    background-size: cover;
   }
 
 
