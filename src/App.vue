@@ -5,25 +5,32 @@
     <!--</keep-alive>-->
 
     <keep-alive>
-      <!--这里是会被缓存的组件-->
-
       <router-view v-if="this.$route.meta.keepAlive"></router-view>
 
     </keep-alive>
 
     <router-view v-if="!this.$route.meta.keepAlive"></router-view>
 
+    <play></play>
 
 
   </div>
 </template>
 
 <script>
+  import play from  "./components/Play.vue"
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    play
+  },
 }
 </script>
 
 <style>
+  #app{
+    padding-bottom: 55px;
+  }
+
 
 </style>

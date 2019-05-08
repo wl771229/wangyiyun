@@ -1,15 +1,16 @@
 <template>
     <div class="tab">
 
-      <router-link tag="li"
-                   v-for="(item,index) in items"
-                   :to="item.ref"
-                   :class="{menu:item.routeName==$route.name}"
-                   :key="index">
-          <img class="tab_img" :src="item.imgUrl" alt="">
+        <router-link tag="li"
+                     v-for="(item,index) in items"
+                     :to="item.ref"
+                     :class="{menu:item.routeName==$route.name}"
+                     :key="index">
+            <img class="tab_img" :src="item.imgUrl" alt="">
 
-        <p>{{item.routeName}}</p>
-      </router-link>
+          <p>{{item.routeName}}</p>
+        </router-link>
+
     </div>
 </template>
 
@@ -26,7 +27,7 @@
                   imgUrl:require('../../../static/img/wyy.png')
                 },
                 {
-                  ref:'/Book',
+                  ref:'/',
                   name:'歌手',
                   routeName: '歌手',
                   imgUrl:require('../../../static/img/wyy.png')

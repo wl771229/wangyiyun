@@ -2,8 +2,6 @@
 <template>
   <div>
 
-
-
       <!--<div @click="jia" style="color: red">加</div>-->
     <!--排行榜-->
     <div class="topList" v-for="(item,index) in topList" :key="item.id" @click="songDetail(index)">
@@ -42,31 +40,12 @@
         },
 //      详情
       songDetail(index){
+
           this.Index(index);
           this.SongList(this.topList)
 
-//        this.$axios.get(`/song/url?id=${id}`,
-//          {
-//            xhrFields: { withCredentials: true }
-//          }
-//        ).then((res) => {
-//            let songUrl = res.data.data[0].url;
-//
-//
-//        })
       },
 
-//      jia(){
-////          1、获取一个基准值，2、获取当前的播放时间 3、基准值除以播放时间，得到没秒走的时间
-//
-//
-//        let num = this.num;
-//        let numArr = num.split(' ');
-//        let number = Number(numArr[0]);
-//        number++;
-//
-//        this.num = number+' '+ '122'
-//      }
     },
     mounted(){
       this.list()
@@ -78,27 +57,6 @@
   }
 </script>
 <style lang="scss" scoped="">
-
-  .topList{
-    display: flex;
-    align-items: center;
-    height: 60px;
-    padding: 0 20px;
-    border-bottom: 3px #f6f6f6 solid;
-
-  }
-  .topList_name{
-    line-height: 25px;
-    margin-left: 20px;
-  }
-  .topList_gname{
-    height: 20px ;
-    line-height: 20px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    overflow: hidden;
-  }
 
 
 </style>

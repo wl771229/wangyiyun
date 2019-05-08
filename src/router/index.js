@@ -25,7 +25,7 @@ export default new Router({
       path: '/ranking',
       name: '排行榜',
       component: Ranking,
-   
+
     },
     {
       path: '/catlist',
@@ -40,7 +40,7 @@ export default new Router({
       name: 'catdetail',
       component: CatDetail,
       meta: {
-        keepAlive: true // 需要被缓存
+        keepAlive: false // 需要被缓存
       }
     }
   ]

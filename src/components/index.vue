@@ -1,6 +1,8 @@
 
 <template>
     <div>
+      <input type="text">
+
       <!--banner 轮播-->
       <div class="banner">
         <mt-swipe :auto="4000">
@@ -12,10 +14,11 @@
       <div class="box">
         <div class="box-sun"></div>
       </div>
-
       <tablist></tablist>
-      <top></top>
-      <play></play>
+
+        <top></top>
+
+
 
     </div>
 </template>
@@ -23,18 +26,19 @@
 <script>
 
   import top from  "./Top.vue"
-  import play from  "./Play.vue"
-  import tablist from  "./list/TabList.vue"
 
+  import tablist from  "./list/TabList.vue"
     export default {
+      name:"home",
       components:{
         top,
-        play,
+
         tablist
       },
         data(){
             return{
               bannerList:'',
+              msg:'我是'
             }
         },
       methods:{
@@ -47,12 +51,15 @@
               this.bannerList = res.data.banners
           })
 
-        }
+        },
+
       },
 
      mounted(){
         this.banner()
-      }
+      },
+
+
 
 
 
