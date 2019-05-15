@@ -14,9 +14,11 @@
       <div class="box">
         <div class="box-sun"></div>
       </div>
+
+
       <tablist></tablist>
 
-        <top></top>
+        <top :list="topList"></top>
 
 
 
@@ -38,6 +40,8 @@
         data(){
             return{
               bannerList:'',
+              topList:'',
+
               msg:'我是'
             }
         },
@@ -52,12 +56,26 @@
           })
 
         },
+        list(){
+          this.$axios.get(`/top/list?idx=3`,
+            {
+              xhrFields: { withCredentials: true }
+            }
+          ).then((res) => {
+            this.topList = res.data.playlist.tracks
+
+          })
+
+        },
+
 
       },
 
      mounted(){
-        this.banner()
-      },
+        this.banner();
+       this.list()
+
+     },
 
 
 

@@ -37,23 +37,30 @@
 
 
 
-      <div class="topList" v-for="(item,index) in playlist.tracks" :key="item.id" @click="songDetail(index)">
-        <span>{{index+1}}</span>
-        <div class="topList_name">
-          <p class="topList_gname">{{item.name}}</p>
-          <p>{{item.ar[0].name}}</p>
-        </div>
-      </div>
+      <!--<div class="topList" v-for="(item,index) in playlist.tracks" :key="item.id" @click="songDetail(index)">-->
+        <!--<span>{{index+1}}</span>-->
+        <!--<div class="topList_name">-->
+          <!--<p class="topList_gname">{{item.name}}</p>-->
+          <!--<p>{{item.ar[0].name}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+      <top :list="playlist.tracks"></top>
+
 
     </div>
 </template>
 
 <script>
+  import top from  "../Top.vue"
     export default {
-
+      components:{
+        top,
+      },
         data () {
             return {
               playlist:'',
+
+
               creator:''
             }
         },
