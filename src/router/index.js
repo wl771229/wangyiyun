@@ -5,6 +5,7 @@ const Index = () => import('@/components/index');
 const Ranking = () => import('@/components/list/Ranking');
 const Catlist = () => import('@/components/list/Catlist');
 const CatDetail = () => import('@/components/list/CatDetail');
+const Player = () => import('@/components/Player');
 
 Vue.use(Router);
 
@@ -12,6 +13,15 @@ export default new Router({
 
   // mode: 'history',  // 去掉路由地址的#
   routes: [
+    {
+      path: '/player',
+      name: 'Player',
+      component: Player,
+      meta: {
+        keepAlive: false // 需要被缓存
+      }
+
+    },
     {
       path: '/',
       name: 'Index',
