@@ -1,6 +1,7 @@
 <template>
   <!--播放组件-->
-    <div class="play" v-if="player">
+    <div class="play" v-if="player"  @click="goplayer">
+
       <div class="kj"></div>
       <div class="singer-img">
         <img :src="newSong.al.picUrl" alt="">
@@ -15,7 +16,7 @@
           <circle class="progress__circle" cx="20" cy="20" r="20" stroke="#ccc"
                   :stroke-dasharray="num" fill="white"/>
         </svg>
-        <img class="bofang"  @click="pause('stop')" src="../../static/img/b.png" alt="">
+        <img class="bofang"  @click.stop="pause('stop')" src="../../static/img/b.png" alt="">
       </div>
 
 
@@ -24,7 +25,7 @@
           <circle class="progress__circle" cx="20" cy="20" r="20" stroke="#ccc"
                   :stroke-dasharray="num" fill="white"/>
         </svg>
-        <img class="bofang"  @click="play" src="../../static/img/z.png" alt="">
+        <img class="bofang"  @click.stop="play" src="../../static/img/z.png" alt="">
       </div>
 
 
@@ -52,7 +53,7 @@
         ...mapGetters(['songList','index','Status']),
       },
       methods:{
-        ...mapActions(['Index','PlayStatus']),
+        ...mapActions(['Index','PlayStatus','playTime']),
 //     获取url
         songUrl(id){
           this.$axios.get(`/song/url?id=${id}`,
@@ -79,13 +80,16 @@
         progress(dt){
           let minNum  = 125/dt ;
           let minNums = this.minNums;
+          let timeNum = 0
           this.timer = setInterval(() =>{
             minNums+=minNum;
+            timeNum+=1;
             if(minNums >= 125){
               this.clearInterval()
             }else {
               this.minNums = minNums;
               this.num = minNums+ ' '+ '125';
+              this.playTime(timeNum)
             }
           },1000)
         },
@@ -118,6 +122,16 @@
             this.songUrl(id)
           }
         },
+//        进入播放器
+        goplayer(){
+
+
+          this.$router.push({
+            path:'/player',
+
+          })
+
+        }
       },
       watch:{
 //         监听当前的位置的变化
@@ -127,7 +141,8 @@
           this.songUrl(id)
         },
 
-      }
+      },
+
     }
 </script>
 <style scoped>

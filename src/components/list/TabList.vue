@@ -1,6 +1,5 @@
 <template>
     <div class="tab">
-
         <router-link tag="li"
                      v-for="(item,index) in items"
                      :to="item.ref"
@@ -27,7 +26,7 @@
                   imgUrl:require('../../../static/img/wyy.png')
                 },
                 {
-                  ref:'/',
+                  ref:'/singer',
                   name:'歌手',
                   routeName: '歌手',
                   imgUrl:require('../../../static/img/wyy.png')
@@ -46,7 +45,12 @@
                 }
               ]
             }
-        }
+        },
+      methods:{
+
+      },
+      mounted(){
+      }
     }
 </script>
 

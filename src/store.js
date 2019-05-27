@@ -14,6 +14,7 @@ const state = {
   playStatus:'',  // 当前的播放状态
   songList:'',  // 当前的播放列表
   time:'', // 当前的播放时间
+  playTime:'', // 当前的播放的时长
 
 };
 const getters = {
@@ -28,6 +29,10 @@ const getters = {
   // 当前的播放状态
   Status(state){
     return state.playStatus
+  },
+  // 当前的播放的时长
+  Time(state){
+    return state.playTime
   }
 
 
@@ -52,6 +57,10 @@ const mutations = {
       state.playStatus = true
     }
   },
+  // 当前的播放的时长
+  newTime(state,value){
+    state.playTime = value
+  }
 };
 
 const actions = {
@@ -70,6 +79,11 @@ const actions = {
   PlayStatus(context,value) {
 
     context.commit('newStatus',value)
+  },
+  // 当前的播放列表
+  playTime(context,value) {
+
+    context.commit('newTime',value)
   }
 };
 

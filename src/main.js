@@ -52,7 +52,7 @@ axios.interceptors.response.use(function (response) {
 
 
 //过滤器
-
+//
 Vue.filter('integer', function (value) {
   let val = value.toString();
   if(val.length <=5){
@@ -69,6 +69,18 @@ Vue.filter('integer', function (value) {
   }
 })
 
+//时间秒转分
+Vue.filter('time', function (value) {
+  var h;
+  h  =   Math.floor(value/60);
+  value  =   value%60;
+  h    +=    '';
+  value    +=    '';
+  h  =   (h.length==1)?'0'+h:h;
+  value  =  (value.length==1)?'0'+Math.floor(Number(value)):Math.floor(Number(value));
+
+  return h+':'+value;
+})
 
 
 Vue.prototype.$axios = axios;

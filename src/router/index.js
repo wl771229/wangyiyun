@@ -6,6 +6,7 @@ const Ranking = () => import('@/components/list/Ranking');
 const Catlist = () => import('@/components/list/Catlist');
 const CatDetail = () => import('@/components/list/CatDetail');
 const Player = () => import('@/components/Player');
+const Singer = () => import('@/components/singer/Singers');
 
 Vue.use(Router);
 
@@ -41,6 +42,14 @@ export default new Router({
       path: '/catlist',
       name: '歌单',
       component: Catlist,
+      meta: {
+        keepAlive: false // 不需要缓存
+      }
+    },
+    {
+      path: '/singer',
+      name: '歌单',
+      component: Singer,
       meta: {
         keepAlive: false // 不需要缓存
       }

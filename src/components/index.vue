@@ -1,7 +1,6 @@
 
 <template>
     <div>
-      <input type="text">
 
       <!--banner 轮播-->
       <div class="banner">
@@ -18,9 +17,7 @@
 
       <tablist></tablist>
 
-        <top :list="topList"></top>
-
-
+      <top :list="topList" ></top>
 
     </div>
 </template>
@@ -42,7 +39,6 @@
               bannerList:'',
               topList:'',
 
-              msg:'我是'
             }
         },
       methods:{

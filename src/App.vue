@@ -11,7 +11,7 @@
 
     <router-view v-if="!this.$route.meta.keepAlive"></router-view>
 
-    <play></play>
+    <play v-show="routerName != 'Player'"></play>
 
 
   </div>
@@ -24,6 +24,15 @@ export default {
   components:{
     play
   },
+  computed: {
+
+    routerName(){
+
+      return this.$route.name
+
+    }
+  },
+
 }
 </script>
 

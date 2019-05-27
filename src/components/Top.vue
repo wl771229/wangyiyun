@@ -17,7 +17,7 @@
 <script>
   import { mapState, mapGetters, mapActions } from 'vuex'
   export default {
-    props: ['list'],
+      props: ['list'],
     data(){
       return{
 
@@ -33,9 +33,9 @@
           this.SongList(this.list)
 
       },
-
     },
     mounted(){
+
     }
 
 
