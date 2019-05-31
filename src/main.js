@@ -87,6 +87,10 @@ Vue.prototype.$axios = axios;
 Vue.prototype.$bus = bus;
 
 
+
+
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -32,6 +32,7 @@ export default new Router({
       }
     },
 
+
     {
       path: '/ranking',
       name: '排行榜',

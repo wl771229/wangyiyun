@@ -25,13 +25,12 @@ export default {
     play
   },
   computed: {
-
     routerName(){
-
       return this.$route.name
-
     }
-  },
+  }
+
+
 
 }
 </script>

@@ -2,11 +2,12 @@
     <div class="player">
 
       <!-- 简单元素 -->
+      <!--{{ci}}-->
 
-<div class="player_bg">
-  <img class="bg_img" :src="playSongImg" alt="">
+      <div class="player_bg">
+        <img class="bg_img" :src="playSongImg" alt="">
 
-</div>
+      </div>
 
 
       <div class=" player_img " :style="trans">
@@ -29,9 +30,9 @@
           <div class="player_zj_btn">
 
 
-            <img src="../../static/img/shangyishou.png" alt="">
-            <img class="zorb" src="../../static/img/zanting.png" alt="">
-            <img src="../../static/img/shangyishou_1.png" alt="">
+            <img src="../../static/img/shangyishou.png" alt="" @click="onSong">
+            <img class="zorb" :src='Status?bf:zt' alt="" @click="stopSong">
+            <img src="../../static/img/shangyishou_1.png" alt="" @click="nextSong">
           </div>
 
 
@@ -59,6 +60,8 @@
               playSongImg:'',
               ci:'',
               endTime:'',
+              zt:require("../../static/img/zanting.png"),
+              bf:require("../../static/img/ziyuan.png")
 
 
             }
@@ -69,6 +72,9 @@
       },
 
       methods:{
+
+        ...mapActions(['Index','PlayStatus','playTime']),
+
         btnshow(){
           this.trans.transform = `matrix(${this.cos}, ${this.sin}, -${this.sin}, ${this.cos}, 0, 0)`;
 
@@ -120,11 +126,48 @@
           s  =   (s.length==1)?'0'+s:s;
 
         return h+':'+Math.floor(Number(s));
-  }
+  },
+//        上一首
+        onSong(){
+          if(this.index>0){
+            let index = this.index-1
+            this.Index(index);
+          }else {
+              alert('没有上一首了')
+          }
+
+        },
+//        下一首
+        nextSong(){
+          let index = this.index+1
+          this.Index(index);
+        },
+//        暂停或播放
+        stopSong(){
+            if(this.Status){
+              this.PlayStatus('stop');
+            }else {
+              this.PlayStatus();
+
+            }
+        }
+      },
+
+    watch:{
+//         监听当前的位置的变化
+      index(newVal){
+        this.playSong = this.songList[newVal];   //当前播放的歌
+        this.playSongImg =  this.playSong.al.picUrl;
+        this.endTime = this.playSong.dt / 1000
+
+
 
       },
 
-      mounted(){
+    },
+
+
+    mounted(){
 
 
         this.rotate();
@@ -135,13 +178,10 @@
 
         this.endTime = this.playSong.dt / 1000
 
-        console.log( Math.floor(Number(this.endTime)))
 
 
+      },
 
-
-
-      }
     }
 </script>
 

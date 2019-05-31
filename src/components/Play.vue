@@ -1,7 +1,6 @@
 <template>
   <!--播放组件-->
     <div class="play" v-if="player"  @click="goplayer">
-
       <div class="kj"></div>
       <div class="singer-img">
         <img :src="newSong.al.picUrl" alt="">
@@ -18,7 +17,6 @@
         </svg>
         <img class="bofang"  @click.stop="pause('stop')" src="../../static/img/b.png" alt="">
       </div>
-
 
       <div class="play-btn"  v-else>
         <svg class="progress">
@@ -46,11 +44,13 @@
               player:false,
               num:'0 125',
               timer:null,
-              minNums:0
+              minNums:0,
+              refStatus:false
+
           }
         },
       computed: {
-        ...mapGetters(['songList','index','Status']),
+        ...mapGetters(['songList','index','Status','Time']),
       },
       methods:{
         ...mapActions(['Index','PlayStatus','playTime']),
@@ -63,11 +63,14 @@
           ).then((res) => {
             this.url = res.data.data[0].url;
             this.player = true;
+
               this.clearInterval();
 //            获取到url地址之后 说明要播放，所以这里要改变播放的状态
               this.PlayStatus().then(() =>{
                 this.play()
               })
+
+
           })
         },
 //        清空定时器，所有归0
@@ -75,12 +78,13 @@
           clearInterval(this.timer);
           this.minNums = 0;
           this.num = '0'+ ' '+ '125';
+          this.playTime(0)
         },
 //        进度条
         progress(dt){
           let minNum  = 125/dt ;
           let minNums = this.minNums;
-          let timeNum = 0
+          let timeNum =  this.Time
           this.timer = setInterval(() =>{
             minNums+=minNum;
             timeNum+=1;
@@ -95,7 +99,9 @@
         },
         // 播放音频
         play () {
+
           this.PlayStatus();
+
           this.$refs.audio.play()
         },
         // 暂停音频
@@ -104,13 +110,32 @@
           this.PlayStatus(stop);
           this.$refs.audio.pause();
         },
+
+
+        // 播放音频
+        playSong () {
+
+            if(this.refStatus == true){
+              this.$refs.audio.play()
+
+            }
+        },
+        // 暂停音频
+        pauseSong (stop) {
+          clearInterval(this.timer);
+          this.$refs.audio.pause();
+        },
+
+
+
+
+
         // 当音频正在播放
         onPlay () {
           this.progress(this.newSong.dt/1000)
         },
         // 当音频正在暂停
         onPause () {
-          console.log("暂停")
 
 
 
@@ -124,22 +149,33 @@
         },
 //        进入播放器
         goplayer(){
-
-
+            this.refStatus = true;
           this.$router.push({
             path:'/player',
-
           })
 
         }
       },
+
+
+
+
       watch:{
 //         监听当前的位置的变化
         index(newVal){
+            this.clearInterval()
           this.newSong = this.songList[newVal];   //当前播放的歌
           let id = this.newSong.id;     // 当前歌的id
           this.songUrl(id)
         },
+        Status(newVal){
+            if(newVal == true){
+
+              this.playSong()
+            }else {
+              this.pauseSong()
+            }
+        }
 
       },
 

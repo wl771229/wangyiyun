@@ -3,6 +3,8 @@
   <div>
       <!--<div @click="jia" style="color: red">加</div>-->
     <!--排行榜-->
+
+
     <div class="topList" v-for="(item,index) in list" :key="item.id" @click="songDetail(index)">
       <span>{{index+1}}</span>
       <div class="topList_name">

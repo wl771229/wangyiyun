@@ -14,7 +14,7 @@ const state = {
   playStatus:'',  // 当前的播放状态
   songList:'',  // 当前的播放列表
   time:'', // 当前的播放时间
-  playTime:'', // 当前的播放的时长
+  playTime:0, // 当前的播放的时长
 
 };
 const getters = {
@@ -50,7 +50,6 @@ const mutations = {
   },
   // 当前的播放状态
   newStatus(state,value){
-
     if(value === 'stop'){
       state.playStatus = false
     }else {
