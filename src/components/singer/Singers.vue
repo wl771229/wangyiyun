@@ -1,44 +1,8 @@
 <template>
     <div>
       <mt-index-list>
-        <mt-index-section index="A">
-          <mt-cell title="Aaron"></mt-cell>
-          <mt-cell title="Alden"></mt-cell>
-          <mt-cell title="Austin"></mt-cell>
-        </mt-index-section>
-        <mt-index-section index="B">
-          <mt-cell title="Baldwin"></mt-cell>
-          <mt-cell title="Braden"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="C">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="D">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="E">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="F">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="G">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
-        </mt-index-section>
-
-        <mt-index-section index="H">
-          <mt-cell title="Zack"></mt-cell>
-          <mt-cell title="Zane"></mt-cell>
+        <mt-index-section v-for="(item,index) in lists" :index="item.name" :key="index">
+          <mt-cell v-for="(items,index2) in item.nameList" :title="items.name" :key="index2"></mt-cell>
         </mt-index-section>
       </mt-index-list>
     </div>
@@ -46,29 +10,92 @@
 
 <script>
   import { IndexList, IndexSection } from 'mint-ui';
+  import pinyin from 'pinyin';
     export default {
 
         data () {
-            return {}
+            return {
+                lists:[
+                  {
+                      name:'A',
+                      nameList:[
+                        {
+                            name:'阿达'
+                        },
+                        {
+                            name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        },
+                        {
+                          name:"阿尔"
+                        }
+                      ]
+                  },
+                  {
+                    name:'B',
+                    nameList:[
+                      {
+                        name:"阿尔"
+                      },
+                      {
+                        name:"阿尔"
+                      },
+                      {
+                        name:"阿尔"
+                      },{
+                        name:"阿尔"
+                      },{
+                        name:"阿尔"
+                      }
+                    ]
+                  }
+                ]
+            }
         },
       methods:{
         list(id){
-          this.$axios.get(`/artist/list?cat=1001&initial=`,
+          this.$axios.get(`/top/artists`,
             {
               xhrFields: { withCredentials: true }
             }
           ).then((res) => {
+            let artistList = res.data.artists;
+            artistList.forEach((item) =>{
+              item.piny = pinyin(item.name, {
+                style: pinyin.STYLE_INITIALS, // 设置拼音风格
+                heteronym: true
+              })
+            })
+            console.log(artistList)
+//
 
 
           })
 
         },
+
+//        字母排序
+        sorting(){
+
+        }
       },
       mounted(){
 
-        this.list(
-
-        )
+        this.list()
       }
     }
 </script>
