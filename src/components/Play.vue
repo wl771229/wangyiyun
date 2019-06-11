@@ -25,11 +25,8 @@
         </svg>
         <img class="bofang"  @click.stop="play" src="../../static/img/z.png" alt="">
       </div>
-
-
       <audio :src="url"   ref="audio"  @pause="onPause"  @play="onPlay">
       </audio>
-
     </div>
 </template>
 
@@ -159,7 +156,6 @@
 
 
 
-
       watch:{
 //         监听当前的位置的变化
         index(newVal){
@@ -168,6 +164,7 @@
           let id = this.newSong.id;     // 当前歌的id
           this.songUrl(id)
         },
+
         Status(newVal){
             if(newVal == true){
 

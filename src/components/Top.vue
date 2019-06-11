@@ -22,12 +22,10 @@
       props: ['list'],
     data(){
       return{
-
       }
     },
     methods: {
       ...mapActions(['Index','SongList']),
-
 //      详情
       songDetail(index){
 

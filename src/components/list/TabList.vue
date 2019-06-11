@@ -20,9 +20,9 @@
             return {
               items:[
                 {
-                  ref:'/',
-                  name:'歌曲',
-                  routeName: '歌曲',
+                  ref:'/search',
+                  name:'search',
+                  routeName: '搜索',
                   imgUrl:require('../../../static/img/wyy.png')
                 },
                 {

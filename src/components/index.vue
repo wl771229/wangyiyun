@@ -1,7 +1,6 @@
 
 <template>
     <div>
-
       <!--banner 轮播-->
       <div class="banner">
         <mt-swipe :auto="4000">
@@ -13,36 +12,31 @@
       <div class="box">
         <div class="box-sun"></div>
       </div>
-
-
+      <!--tab选项-->
       <tablist></tablist>
-
+      <!--content-->
       <top :list="topList" ></top>
-
     </div>
 </template>
 
 <script>
 
   import top from  "./Top.vue"
-
   import tablist from  "./list/TabList.vue"
     export default {
       name:"home",
       components:{
         top,
-
         tablist
       },
         data(){
             return{
               bannerList:'',
               topList:'',
-
             }
         },
       methods:{
-        banner(){
+         banner(){
           this.$axios.get(`/banner`,
             {
               xhrFields: { withCredentials: true }
@@ -52,24 +46,24 @@
           })
 
         },
-        list(){
+
+         list(){
           this.$axios.get(`/top/list?idx=3`,
             {
               xhrFields: { withCredentials: true }
             }
           ).then((res) => {
             this.topList = res.data.playlist.tracks
-
           })
-
         },
 
 
       },
 
      mounted(){
-        this.banner();
-       this.list()
+//        this.banner();
+//        this.list();
+       this.$axios.all([this.banner(), this.list()])
 
      },
 

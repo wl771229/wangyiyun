@@ -7,6 +7,8 @@ const Catlist = () => import('@/components/list/Catlist');
 const CatDetail = () => import('@/components/list/CatDetail');
 const Player = () => import('@/components/Player');
 const Singer = () => import('@/components/singer/Singers');
+const SingerDel = () => import('@/components/singer/SingerDel');
+const Search = () => import('@/components/search/Search');
 
 Vue.use(Router);
 
@@ -48,20 +50,37 @@ export default new Router({
       }
     },
     {
-      path: '/singer',
-      name: '歌单',
-      component: Singer,
-      meta: {
-        keepAlive: false // 不需要缓存
-      }
-    },
-    {
       path: '/catdetail',
       name: 'catdetail',
       component: CatDetail,
       meta: {
         keepAlive: false // 需要被缓存
       }
+    },
+    {
+      path: '/singer',
+      name: '歌手',
+      component: Singer,
+      meta: {
+        keepAlive: false // 不需要缓存
+      }
+    },
+    {
+      path: '/singerDel',
+      name: 'SingerDel',
+      component: SingerDel,
+      meta: {
+        keepAlive: false // 不需要缓存
+      }
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search,
+      meta: {
+        keepAlive: false // 需要被缓存
+      }
     }
+
   ]
 })
